@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    tencentcloud = {
-      source  = "tencentcloudstack/tencentcloud"
-      version = "1.81.111"
+    alicloud = {
+      source  = "aliyun/alicloud"
+      version = "1.220.1"
     }
   }
 }
