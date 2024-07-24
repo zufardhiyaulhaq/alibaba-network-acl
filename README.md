@@ -33,6 +33,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_additional_ingress_application_rules"></a> [additional\_ingress\_application\_rules](#input\_additional\_ingress\_application\_rules) | List of additional ingress rules for application network ACL | `list(string)` | `[]` | no |
+| <a name="input_additional_ingress_compliance_rules"></a> [additional\_ingress\_compliance\_rules](#input\_additional\_ingress\_compliance\_rules) | List of additional ingress rules for compliance network ACL | `list(string)` | `[]` | no |
+| <a name="input_additional_ingress_public_rules"></a> [additional\_ingress\_public\_rules](#input\_additional\_ingress\_public\_rules) | List of additional ingress rules for public network ACL | `list(string)` | `[]` | no |
+| <a name="input_additional_ingress_stateful_rules"></a> [additional\_ingress\_stateful\_rules](#input\_additional\_ingress\_stateful\_rules) | List of additional ingress rules for stateful network ACL | `list(string)` | `[]` | no |
+| <a name="input_additional_ingress_utility_rules"></a> [additional\_ingress\_utility\_rules](#input\_additional\_ingress\_utility\_rules) | List of additional ingress rules for utility network ACL | `list(string)` | `[]` | no |
 | <a name="input_application_subnets_cidr"></a> [application\_subnets\_cidr](#input\_application\_subnets\_cidr) | List of application subnets CIDR | `list(string)` | n/a | yes |
 | <a name="input_application_subnets_id"></a> [application\_subnets\_id](#input\_application\_subnets\_id) | List of application subnets ID | `list(string)` | n/a | yes |
 | <a name="input_compliance_subnets_cidr"></a> [compliance\_subnets\_cidr](#input\_compliance\_subnets\_cidr) | List of compliance subnets CIDR | `list(string)` | n/a | yes |

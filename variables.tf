@@ -62,3 +62,33 @@ variable "compliance_subnets_id" {
   description = "List of compliance subnets ID"
   type        = list(string)
 }
+
+variable "additional_ingress_public_rules" {
+  description = "List of additional ingress rules for public network ACL"
+  type        = list(string)
+  default     = []
+}
+
+variable "additional_ingress_utility_rules" {
+  description = "List of additional ingress rules for utility network ACL"
+  type        = list(string)
+  default     = []
+}
+
+variable "additional_ingress_application_rules" {
+  description = "List of additional ingress rules for application network ACL"
+  type        = list(string)
+  default     = []
+}
+
+variable "additional_ingress_stateful_rules" {
+  description = "List of additional ingress rules for stateful network ACL"
+  type        = list(string)
+  default     = []
+}
+
+variable "additional_ingress_compliance_rules" {
+  description = "List of additional ingress rules for compliance network ACL"
+  type        = list(string)
+  default     = []
+}
