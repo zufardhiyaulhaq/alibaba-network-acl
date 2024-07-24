@@ -9,17 +9,17 @@ locals {
   allow_3022_tcp_from_utility   = formatlist("ACCEPT#%s#22#TCP", var.utility_subnets_cidr)
   allow_443_tcp_from_utility    = formatlist("ACCEPT#%s#80#TCP", var.utility_subnets_cidr)
 
-  allow_443_tcp_from_internet = "ACCEPT#0.0.0.0/0#443#TCP"
-  allow_80_tcp_from_internet = "ACCEPT#0.0.0.0/0#80#TCP"
-  allow_15012_tcp_from_internet = "ACCEPT#0.0.0.0/0#15012#TCP"
-  allow_15443_tcp_from_internet = "ACCEPT#0.0.0.0/0#15443#TCP"
+  allow_443_tcp_from_internet = ["ACCEPT#0.0.0.0/0#443#TCP"]
+  allow_80_tcp_from_internet = ["ACCEPT#0.0.0.0/0#80#TCP"]
+  allow_15012_tcp_from_internet = ["ACCEPT#0.0.0.0/0#15012#TCP"]
+  allow_15443_tcp_from_internet = ["ACCEPT#0.0.0.0/0#15443#TCP"]
 
   allow_443_tcp_from_public = formatlist("ACCEPT#%s#443#TCP", var.public_subnets_cidr)
   allow_80_tcp_from_public = formatlist("ACCEPT#%s#80#TCP", var.public_subnets_cidr)
   allow_15012_tcp_from_public = formatlist("ACCEPT#%s#15012#TCP", var.public_subnets_cidr)
   allow_15443_tcp_from_public = formatlist("ACCEPT#%s#15443#TCP", var.public_subnets_cidr)
 
-  allow_9099_tcp_from_internet = "ACCEPT#0.0.0.0/0#9099#TCP"
+  allow_9099_tcp_from_internet = ["ACCEPT#0.0.0.0/0#9099#TCP"]
 }
 
 resource "tencentcloud_vpc_acl" "public" {
