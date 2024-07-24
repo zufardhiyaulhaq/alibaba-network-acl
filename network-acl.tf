@@ -21,7 +21,7 @@ resource "tencentcloud_vpc_acl" "public" {
 }
 
 resource "tencentcloud_vpc_acl_attachment" "public" {
-  for_each = var.public_subnets_id
+  for_each = toset(var.public_subnets_id)
 
   acl_id    = tencentcloud_vpc_acl.public.id
   subnet_id = each.value
@@ -42,7 +42,7 @@ resource "tencentcloud_vpc_acl" "utility" {
 }
 
 resource "tencentcloud_vpc_acl_attachment" "utility" {
-  for_each = var.utility_subnets_id
+  for_each = toset(var.utility_subnets_id)
 
   acl_id    = tencentcloud_vpc_acl.utility.id
   subnet_id = each.value
@@ -63,7 +63,7 @@ resource "tencentcloud_vpc_acl" "application" {
 }
 
 resource "tencentcloud_vpc_acl_attachment" "application" {
-  for_each = var.application_subnets_id
+  for_each = toset(var.application_subnets_id)
 
   acl_id    = tencentcloud_vpc_acl.application.id
   subnet_id = each.value
@@ -85,7 +85,7 @@ resource "tencentcloud_vpc_acl" "stateful" {
 }
 
 resource "tencentcloud_vpc_acl_attachment" "stateful" {
-  for_each = var.stateful_subnets_id
+  for_each = toset(var.stateful_subnets_id)
 
   acl_id    = tencentcloud_vpc_acl.stateful.id
   subnet_id = each.value
@@ -107,7 +107,7 @@ resource "tencentcloud_vpc_acl" "compliance" {
 }
 
 resource "tencentcloud_vpc_acl_attachment" "compliance" {
-  for_each = var.compliance_subnets_id
+  for_each = toset(var.compliance_subnets_id)
 
   acl_id    = tencentcloud_vpc_acl.compliance.id
   subnet_id = each.value
