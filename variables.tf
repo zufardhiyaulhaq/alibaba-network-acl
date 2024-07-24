@@ -15,50 +15,50 @@ variable "vpc_id" {
 
 variable "public_subnets_cidr" {
   description = "List of public subnets CIDR"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "utility_subnets_cidr" {
   description = "List of utility subnets CIDR"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "application_subnets_cidr" {
   description = "List of application subnets CIDR"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "stateful_subnets_cidr" {
   description = "List of stateful subnets CIDR"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "compliance_subnets_cidr" {
   description = "List of compliance subnets CIDR"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "public_subnets_id" {
   description = "List of public subnets ID"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "utility_subnets_id" {
   description = "List of utility subnets ID"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "application_subnets_id" {
   description = "List of application subnets ID"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "stateful_subnets_id" {
   description = "List of stateful subnets ID"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "compliance_subnets_id" {
   description = "List of compliance subnets ID"
-  type = list(string)
+  type        = list(string)
 }
