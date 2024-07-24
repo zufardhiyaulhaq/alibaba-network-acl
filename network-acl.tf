@@ -1,9 +1,9 @@
 locals {
-  allow_all_from_public      = formatlist("ACCEPT#$s#ALL#ALL", var.public_subnets_cidr)
-  allow_all_from_utility     = formatlist("ACCEPT#$s#ALL#ALL", var.utility_subnets_cidr)
-  allow_all_from_application = formatlist("ACCEPT#$s#ALL#ALL", var.application_subnets_cidr)
-  allow_all_from_stateful    = formatlist("ACCEPT#$s#ALL#ALL", var.stateful_subnets_cidr)
-  allow_all_From_compliance  = formatlist("ACCEPT#$s#ALL#ALL", var.compliance_subnets_cidr)
+  allow_all_from_public      = formatlist("ACCEPT#%s#ALL#ALL", var.public_subnets_cidr)
+  allow_all_from_utility     = formatlist("ACCEPT#%s#ALL#ALL", var.utility_subnets_cidr)
+  allow_all_from_application = formatlist("ACCEPT#%s#ALL#ALL", var.application_subnets_cidr)
+  allow_all_from_stateful    = formatlist("ACCEPT#%s#ALL#ALL", var.stateful_subnets_cidr)
+  allow_all_From_compliance  = formatlist("ACCEPT#%s#ALL#ALL", var.compliance_subnets_cidr)
 }
 
 resource "tencentcloud_vpc_acl" "public" {
