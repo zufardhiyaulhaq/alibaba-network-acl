@@ -17,3 +17,18 @@ resource "alicloud_network_acl_attachment" "application" {
     resource_type = "VSwitch"
   }
 }
+
+resource "alicloud_network_acl_entries" "allow_all_port_from_application_subnet" {
+  for_each = toset(var.application_subnets_cidr)
+
+  network_acl_id = alicloud_network_acl.application.id
+  ingress {
+    protocol       = "all"
+    port           = "-1/-1"
+    source_cidr_ip = each.value
+    name           = "allow_all_port_from_application_subnet"
+    entry_type     = "custom"
+    policy         = "accept"
+    description    = "allow all port from application subnet"
+  }
+}

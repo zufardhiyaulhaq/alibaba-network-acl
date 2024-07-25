@@ -23,10 +23,10 @@ variable "vpc_id" {
 #   type        = list(string)
 # }
 
-# variable "application_subnets_cidr" {
-#   description = "List of application subnets CIDR"
-#   type        = list(string)
-# }
+variable "application_subnets_cidr" {
+  description = "List of application subnets CIDR"
+  type        = list(string)
+}
 
 # variable "stateful_subnets_cidr" {
 #   description = "List of stateful subnets CIDR"
