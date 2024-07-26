@@ -18,10 +18,10 @@ variable "vpc_id" {
 #   type        = list(string)
 # }
 
-# variable "utility_subnets_cidr" {
-#   description = "List of utility subnets CIDR"
-#   type        = list(string)
-# }
+variable "utility_subnets_cidr" {
+  description = "List of utility subnets CIDR"
+  type        = list(string)
+}
 
 variable "application_subnets_cidr" {
   description = "List of application subnets CIDR"
