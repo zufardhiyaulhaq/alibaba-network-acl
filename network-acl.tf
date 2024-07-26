@@ -12,7 +12,7 @@ resource "alicloud_network_acl" "application" {
     content {
       protocol               = "all"
       port                   = "-1/-1"
-      source_cidr_ip         = each.value
+      source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_all_port_from_application_subnet"
       entry_type             = "custom"
       policy                 = "accept"
@@ -25,7 +25,7 @@ resource "alicloud_network_acl" "application" {
     content {
       protocol               = "all"
       port                   = "22/22"
-      source_cidr_ip         = each.value
+      source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_22_from_utility_subnet"
       entry_type             = "custom"
       policy                 = "accept"
@@ -38,7 +38,7 @@ resource "alicloud_network_acl" "application" {
     content {
       protocol               = "all"
       port                   = "3022/3022"
-      source_cidr_ip         = each.value
+      source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_3022_from_utility_subnet"
       entry_type             = "custom"
       policy                 = "accept"
@@ -51,7 +51,7 @@ resource "alicloud_network_acl" "application" {
     content {
       protocol               = "all"
       port                   = "6443/6443"
-      source_cidr_ip         = each.value
+      source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_6443_from_utility_subnet"
       entry_type             = "custom"
       policy                 = "accept"
