@@ -61,11 +61,13 @@ resource "alicloud_network_acl" "application" {
 }
 
 resource "alicloud_network_acl_attachment" "application" {
-  for_each = toset(var.application_subnets_id)
-
   network_acl_id = alicloud_network_acl.application.id
-  resources {
-    resource_id   = each.value
-    resource_type = "VSwitch"
+
+  dynamic "resources" {
+    for_each = toset(var.application_subnets_id)
+    content {
+      resource_id   = resources.value
+      resource_type = "VSwitch"
+    }
   }
 }
