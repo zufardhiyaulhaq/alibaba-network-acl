@@ -19,8 +19,6 @@ resource "alicloud_network_acl_attachment" "application" {
 }
 
 resource "alicloud_network_acl_entries" "application" {
-  for_each = toset(var.application_subnets_cidr)
-
   network_acl_id = alicloud_network_acl.application.id
 
   dynamic "ingress" {
