@@ -47,15 +47,15 @@ resource "alicloud_network_acl" "application" {
   }
 
   dynamic "ingress_acl_entries" {
-    for_each = toset(var.utility_subnets_cidr)
+    for_each = var.additional_ingress_application_rules
     content {
-      protocol               = "all"
-      port                   = "6443/6443"
-      source_cidr_ip         = ingress_acl_entries.value
-      network_acl_entry_name = "allow_6443_from_utility_subnet"
+      protocol               = ingress_acl_entries.value.protocol
+      port                   = ingress_acl_entries.value.port
+      source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
+      network_acl_entry_name = ingress_acl_entries.value.name
       entry_type             = "custom"
-      policy                 = "accept"
-      description            = "allow 6443 from utility subnet"
+      policy                 = ingress_acl_entries.value.policy
+      description            = ingress_acl_entries.value.name
     }
   }
 }
