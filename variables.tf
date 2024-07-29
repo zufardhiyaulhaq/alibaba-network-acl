@@ -66,10 +66,7 @@ variable "compliance_subnets_id" {
 variable "additional_ingress_application_rules" {
   description = "List of additional ingress rules for application subnet ACL"
   type = map(object({
-    name           = string
-    policy         = number
-    protocol       = string
-    source_cidr_ip = string
-    policy         = number
+    cidr              = string
+    availability_zone = string
   }))
 }
