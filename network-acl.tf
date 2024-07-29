@@ -47,6 +47,71 @@ resource "alicloud_network_acl" "application" {
   }
 
   dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "all"
+      port                   = "6443/6443"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_6443_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 6443 from utility subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.public_subnets_cidr)
+    content {
+      protocol               = "all"
+      port                   = "80/80"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_80_from_public_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 6443 from public subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.public_subnets_cidr)
+    content {
+      protocol               = "all"
+      port                   = "443/443"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_443_from_public_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 443 from public subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.public_subnets_cidr)
+    content {
+      protocol               = "all"
+      port                   = "15021/15021"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_15021_from_public_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 15021 from public subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.public_subnets_cidr)
+    content {
+      protocol               = "all"
+      port                   = "15443/15443"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_15443_from_public_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 15443 from public subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
     for_each = var.additional_ingress_application_rules
     content {
       protocol               = ingress_acl_entries.value.protocol
