@@ -19,13 +19,25 @@ No modules.
 | Name | Type |
 |------|------|
 | [alicloud_network_acl.application](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl) | resource |
+| [alicloud_network_acl.compliance](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl) | resource |
+| [alicloud_network_acl.public](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl) | resource |
+| [alicloud_network_acl.stateful](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl) | resource |
+| [alicloud_network_acl.utility](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl) | resource |
 | [alicloud_network_acl_attachment.application](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl_attachment) | resource |
+| [alicloud_network_acl_attachment.compliance](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl_attachment) | resource |
+| [alicloud_network_acl_attachment.public](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl_attachment) | resource |
+| [alicloud_network_acl_attachment.stateful](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl_attachment) | resource |
+| [alicloud_network_acl_attachment.utility](https://registry.terraform.io/providers/aliyun/alicloud/1.220.1/docs/resources/network_acl_attachment) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_ingress_application_rules"></a> [additional\_ingress\_application\_rules](#input\_additional\_ingress\_application\_rules) | List of additional ingress rules for application subnet ACL | <pre>map(object({<br>    policy         = string<br>    protocol       = string<br>    port           = string<br>    source_cidr_ip = string<br>  }))</pre> | `{}` | no |
+| <a name="input_additional_ingress_compliance_rules"></a> [additional\_ingress\_compliance\_rules](#input\_additional\_ingress\_compliance\_rules) | List of additional ingress rules for compliance subnet ACL | <pre>map(object({<br>    policy         = string<br>    protocol       = string<br>    port           = string<br>    source_cidr_ip = string<br>  }))</pre> | `{}` | no |
+| <a name="input_additional_ingress_public_rules"></a> [additional\_ingress\_public\_rules](#input\_additional\_ingress\_public\_rules) | List of additional ingress rules for public subnet ACL | <pre>map(object({<br>    policy         = string<br>    protocol       = string<br>    port           = string<br>    source_cidr_ip = string<br>  }))</pre> | `{}` | no |
+| <a name="input_additional_ingress_stateful_rules"></a> [additional\_ingress\_stateful\_rules](#input\_additional\_ingress\_stateful\_rules) | List of additional ingress rules for stateful subnet ACL | <pre>map(object({<br>    policy         = string<br>    protocol       = string<br>    port           = string<br>    source_cidr_ip = string<br>  }))</pre> | `{}` | no |
+| <a name="input_additional_ingress_utility_rules"></a> [additional\_ingress\_utility\_rules](#input\_additional\_ingress\_utility\_rules) | List of additional ingress rules for utility subnet ACL | <pre>map(object({<br>    policy         = string<br>    protocol       = string<br>    port           = string<br>    source_cidr_ip = string<br>  }))</pre> | `{}` | no |
 | <a name="input_application_subnets_cidr"></a> [application\_subnets\_cidr](#input\_application\_subnets\_cidr) | List of application subnets CIDR | `list(string)` | n/a | yes |
 | <a name="input_application_subnets_id"></a> [application\_subnets\_id](#input\_application\_subnets\_id) | List of application subnets ID | `list(string)` | n/a | yes |
 | <a name="input_compliance_subnets_cidr"></a> [compliance\_subnets\_cidr](#input\_compliance\_subnets\_cidr) | List of compliance subnets CIDR | `list(string)` | n/a | yes |

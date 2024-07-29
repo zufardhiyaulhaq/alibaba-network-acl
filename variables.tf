@@ -73,3 +73,47 @@ variable "additional_ingress_application_rules" {
   }))
   default = {}
 }
+
+variable "additional_ingress_utility_rules" {
+  description = "List of additional ingress rules for utility subnet ACL"
+  type = map(object({
+    policy         = string
+    protocol       = string
+    port           = string
+    source_cidr_ip = string
+  }))
+  default = {}
+}
+
+variable "additional_ingress_public_rules" {
+  description = "List of additional ingress rules for public subnet ACL"
+  type = map(object({
+    policy         = string
+    protocol       = string
+    port           = string
+    source_cidr_ip = string
+  }))
+  default = {}
+}
+
+variable "additional_ingress_stateful_rules" {
+  description = "List of additional ingress rules for stateful subnet ACL"
+  type = map(object({
+    policy         = string
+    protocol       = string
+    port           = string
+    source_cidr_ip = string
+  }))
+  default = {}
+}
+
+variable "additional_ingress_compliance_rules" {
+  description = "List of additional ingress rules for compliance subnet ACL"
+  type = map(object({
+    policy         = string
+    protocol       = string
+    port           = string
+    source_cidr_ip = string
+  }))
+  default = {}
+}
