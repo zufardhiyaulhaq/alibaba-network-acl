@@ -72,5 +72,4 @@ variable "additional_ingress_application_rules" {
     name           = string
     policy         = number
   }))
-  default = {}
 }
