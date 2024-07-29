@@ -185,18 +185,18 @@ resource "alicloud_network_acl" "utility" {
     }
   }
 
-  # dynamic "ingress_acl_entries" {
-  #   for_each = var.additional_ingress_utility_rules
-  #   content {
-  #     protocol               = ingress_acl_entries.value.protocol
-  #     port                   = ingress_acl_entries.value.port
-  #     source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
-  #     network_acl_entry_name = ingress_acl_entries.key
-  #     entry_type             = "custom"
-  #     policy                 = ingress_acl_entries.value.policy
-  #     description            = ingress_acl_entries.key
-  #   }
-  # }
+  dynamic "ingress_acl_entries" {
+    for_each = var.additional_ingress_utility_rules
+    content {
+      protocol               = ingress_acl_entries.value.protocol
+      port                   = ingress_acl_entries.value.port
+      source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
+      network_acl_entry_name = ingress_acl_entries.key
+      entry_type             = "custom"
+      policy                 = ingress_acl_entries.value.policy
+      description            = ingress_acl_entries.key
+    }
+  }
 
   timeouts {
     create = "30m"
@@ -275,18 +275,18 @@ resource "alicloud_network_acl" "public" {
     }
   }
 
-  # dynamic "ingress_acl_entries" {
-  #   for_each = var.additional_ingress_public_rules
-  #   content {
-  #     protocol               = ingress_acl_entries.value.protocol
-  #     port                   = ingress_acl_entries.value.port
-  #     source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
-  #     network_acl_entry_name = ingress_acl_entries.key
-  #     entry_type             = "custom"
-  #     policy                 = ingress_acl_entries.value.policy
-  #     description            = ingress_acl_entries.key
-  #   }
-  # }
+  dynamic "ingress_acl_entries" {
+    for_each = var.additional_ingress_public_rules
+    content {
+      protocol               = ingress_acl_entries.value.protocol
+      port                   = ingress_acl_entries.value.port
+      source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
+      network_acl_entry_name = ingress_acl_entries.key
+      entry_type             = "custom"
+      policy                 = ingress_acl_entries.value.policy
+      description            = ingress_acl_entries.key
+    }
+  }
 
   timeouts {
     create = "30m"
@@ -365,18 +365,18 @@ resource "alicloud_network_acl" "stateful" {
     }
   }
 
-  # dynamic "ingress_acl_entries" {
-  #   for_each = var.additional_ingress_stateful_rules
-  #   content {
-  #     protocol               = ingress_acl_entries.value.protocol
-  #     port                   = ingress_acl_entries.value.port
-  #     source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
-  #     network_acl_entry_name = ingress_acl_entries.key
-  #     entry_type             = "custom"
-  #     policy                 = ingress_acl_entries.value.policy
-  #     description            = ingress_acl_entries.key
-  #   }
-  # }
+  dynamic "ingress_acl_entries" {
+    for_each = var.additional_ingress_stateful_rules
+    content {
+      protocol               = ingress_acl_entries.value.protocol
+      port                   = ingress_acl_entries.value.port
+      source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
+      network_acl_entry_name = ingress_acl_entries.key
+      entry_type             = "custom"
+      policy                 = ingress_acl_entries.value.policy
+      description            = ingress_acl_entries.key
+    }
+  }
 
   timeouts {
     create = "30m"
@@ -455,18 +455,18 @@ resource "alicloud_network_acl" "compliance" {
     }
   }
 
-  # dynamic "ingress_acl_entries" {
-  #   for_each = var.additional_ingress_compliance_rules
-  #   content {
-  #     protocol               = ingress_acl_entries.value.protocol
-  #     port                   = ingress_acl_entries.value.port
-  #     source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
-  #     network_acl_entry_name = ingress_acl_entries.key
-  #     entry_type             = "custom"
-  #     policy                 = ingress_acl_entries.value.policy
-  #     description            = ingress_acl_entries.key
-  #   }
-  # }
+  dynamic "ingress_acl_entries" {
+    for_each = var.additional_ingress_compliance_rules
+    content {
+      protocol               = ingress_acl_entries.value.protocol
+      port                   = ingress_acl_entries.value.port
+      source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
+      network_acl_entry_name = ingress_acl_entries.key
+      entry_type             = "custom"
+      policy                 = ingress_acl_entries.value.policy
+      description            = ingress_acl_entries.key
+    }
+  }
 
   timeouts {
     create = "30m"
