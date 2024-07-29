@@ -72,4 +72,5 @@ variable "additional_ingress_application_rules" {
     port           = string
     source_cidr_ip = string
   }))
+  default = {}
 }
