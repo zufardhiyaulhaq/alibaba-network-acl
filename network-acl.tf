@@ -23,7 +23,7 @@ resource "alicloud_network_acl" "application" {
   dynamic "ingress_acl_entries" {
     for_each = toset(var.utility_subnets_cidr)
     content {
-      protocol               = "all"
+      protocol               = "tcp"
       port                   = "22/22"
       source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_22_from_utility_subnet"
@@ -36,7 +36,7 @@ resource "alicloud_network_acl" "application" {
   dynamic "ingress_acl_entries" {
     for_each = toset(var.utility_subnets_cidr)
     content {
-      protocol               = "all"
+      protocol               = "tcp"
       port                   = "3022/3022"
       source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_3022_from_utility_subnet"
@@ -49,7 +49,7 @@ resource "alicloud_network_acl" "application" {
   dynamic "ingress_acl_entries" {
     for_each = toset(var.utility_subnets_cidr)
     content {
-      protocol               = "all"
+      protocol               = "tcp"
       port                   = "6443/6443"
       source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_6443_from_utility_subnet"
@@ -62,7 +62,7 @@ resource "alicloud_network_acl" "application" {
   dynamic "ingress_acl_entries" {
     for_each = toset(var.public_subnets_cidr)
     content {
-      protocol               = "all"
+      protocol               = "tcp"
       port                   = "80/80"
       source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_80_from_public_subnet"
@@ -75,7 +75,7 @@ resource "alicloud_network_acl" "application" {
   dynamic "ingress_acl_entries" {
     for_each = toset(var.public_subnets_cidr)
     content {
-      protocol               = "all"
+      protocol               = "tcp"
       port                   = "443/443"
       source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_443_from_public_subnet"
@@ -88,7 +88,7 @@ resource "alicloud_network_acl" "application" {
   dynamic "ingress_acl_entries" {
     for_each = toset(var.public_subnets_cidr)
     content {
-      protocol               = "all"
+      protocol               = "tcp"
       port                   = "15021/15021"
       source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_15021_from_public_subnet"
@@ -101,7 +101,7 @@ resource "alicloud_network_acl" "application" {
   dynamic "ingress_acl_entries" {
     for_each = toset(var.public_subnets_cidr)
     content {
-      protocol               = "all"
+      protocol               = "tcp"
       port                   = "15443/15443"
       source_cidr_ip         = ingress_acl_entries.value
       network_acl_entry_name = "allow_15443_from_public_subnet"

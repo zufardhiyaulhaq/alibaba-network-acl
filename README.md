@@ -25,7 +25,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_additional_ingress_application_rules"></a> [additional\_ingress\_application\_rules](#input\_additional\_ingress\_application\_rules) | List of additional ingress rules for application subnet ACL | <pre>map(object({<br>    name           = string<br>    policy         = string<br>    protocol       = string<br>    port           = string<br>    source_cidr_ip = string<br>  }))</pre> | `{}` | no |
+| <a name="input_additional_ingress_application_rules"></a> [additional\_ingress\_application\_rules](#input\_additional\_ingress\_application\_rules) | List of additional ingress rules for application subnet ACL | <pre>map(object({<br>    policy         = string<br>    protocol       = string<br>    port           = string<br>    source_cidr_ip = string<br>  }))</pre> | `{}` | no |
 | <a name="input_application_subnets_cidr"></a> [application\_subnets\_cidr](#input\_application\_subnets\_cidr) | List of application subnets CIDR | `list(string)` | n/a | yes |
 | <a name="input_application_subnets_id"></a> [application\_subnets\_id](#input\_application\_subnets\_id) | List of application subnets ID | `list(string)` | n/a | yes |
 | <a name="input_compliance_subnets_cidr"></a> [compliance\_subnets\_cidr](#input\_compliance\_subnets\_cidr) | List of compliance subnets CIDR | `list(string)` | n/a | yes |
