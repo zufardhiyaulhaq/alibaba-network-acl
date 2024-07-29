@@ -167,6 +167,32 @@ resource "alicloud_network_acl" "utility" {
   }
 
   dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "22/22"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_22_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 22 from utility subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "3022/3022"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_3022_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 3022 from utility subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
     for_each = var.additional_ingress_utility_rules
     content {
       protocol               = ingress_acl_entries.value.protocol
@@ -209,6 +235,32 @@ resource "alicloud_network_acl" "public" {
     entry_type             = "custom"
     policy                 = "accept"
     description            = "allow all port"
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "22/22"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_22_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 22 from utility subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "3022/3022"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_3022_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 3022 from utility subnet"
+    }
   }
 
   dynamic "ingress_acl_entries" {
@@ -257,6 +309,32 @@ resource "alicloud_network_acl" "stateful" {
   }
 
   dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "22/22"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_22_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 22 from utility subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "3022/3022"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_3022_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 3022 from utility subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
     for_each = var.additional_ingress_stateful_rules
     content {
       protocol               = ingress_acl_entries.value.protocol
@@ -299,6 +377,32 @@ resource "alicloud_network_acl" "compliance" {
     entry_type             = "custom"
     policy                 = "accept"
     description            = "allow all port"
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "22/22"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_22_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 22 from utility subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "3022/3022"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_3022_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 3022 from utility subnet"
+    }
   }
 
   dynamic "ingress_acl_entries" {
