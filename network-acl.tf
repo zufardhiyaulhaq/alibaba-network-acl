@@ -17,18 +17,18 @@ resource "alicloud_network_acl" "application" {
     description            = "allow all port"
   }
 
-  # dynamic "ingress_acl_entries" {
-  #   for_each = toset(var.application_subnets_cidr)
-  #   content {
-  #     protocol               = "all"
-  #     port                   = "-1/-1"
-  #     source_cidr_ip         = ingress_acl_entries.value
-  #     network_acl_entry_name = "allow_all_port_from_application_subnet"
-  #     entry_type             = "custom"
-  #     policy                 = "accept"
-  #     description            = "allow all port from application subnet"
-  #   }
-  # }
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.application_subnets_cidr)
+    content {
+      protocol               = "all"
+      port                   = "-1/-1"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_all_port_from_application_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow all port from application subnet"
+    }
+  }
 
   # dynamic "ingress_acl_entries" {
   #   for_each = toset(var.utility_subnets_cidr)
@@ -121,18 +121,18 @@ resource "alicloud_network_acl" "application" {
   #   }
   # }
 
-  dynamic "ingress_acl_entries" {
-    for_each = var.additional_ingress_application_rules
-    content {
-      protocol               = ingress_acl_entries.value.protocol
-      port                   = ingress_acl_entries.value.port
-      source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
-      network_acl_entry_name = ingress_acl_entries.key
-      entry_type             = "custom"
-      policy                 = ingress_acl_entries.value.policy
-      description            = ingress_acl_entries.key
-    }
-  }
+  # dynamic "ingress_acl_entries" {
+  #   for_each = var.additional_ingress_application_rules
+  #   content {
+  #     protocol               = ingress_acl_entries.value.protocol
+  #     port                   = ingress_acl_entries.value.port
+  #     source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
+  #     network_acl_entry_name = ingress_acl_entries.key
+  #     entry_type             = "custom"
+  #     policy                 = ingress_acl_entries.value.policy
+  #     description            = ingress_acl_entries.key
+  #   }
+  # }
 
   timeouts {
     create = "30m"
