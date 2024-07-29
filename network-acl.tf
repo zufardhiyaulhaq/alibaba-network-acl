@@ -7,6 +7,16 @@ resource "alicloud_network_acl" "application" {
     environment = var.label_environment
   }
 
+  egress_acl_entries {
+    protocol               = "all"
+    port                   = "-1/-1"
+    destination_cidr_ip    = "0.0.0.0/0"
+    network_acl_entry_name = "allow_all_port"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow all port"
+  }
+
   dynamic "ingress_acl_entries" {
     for_each = toset(var.application_subnets_cidr)
     content {
@@ -146,6 +156,16 @@ resource "alicloud_network_acl" "utility" {
     environment = var.label_environment
   }
 
+  egress_acl_entries {
+    protocol               = "all"
+    port                   = "-1/-1"
+    destination_cidr_ip    = "0.0.0.0/0"
+    network_acl_entry_name = "allow_all_port"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow all port"
+  }
+
   dynamic "ingress_acl_entries" {
     for_each = var.additional_ingress_utility_rules
     content {
@@ -179,6 +199,16 @@ resource "alicloud_network_acl" "public" {
   tags = {
     team        = var.label_team
     environment = var.label_environment
+  }
+
+  egress_acl_entries {
+    protocol               = "all"
+    port                   = "-1/-1"
+    destination_cidr_ip    = "0.0.0.0/0"
+    network_acl_entry_name = "allow_all_port"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow all port"
   }
 
   dynamic "ingress_acl_entries" {
@@ -216,6 +246,16 @@ resource "alicloud_network_acl" "stateful" {
     environment = var.label_environment
   }
 
+  egress_acl_entries {
+    protocol               = "all"
+    port                   = "-1/-1"
+    destination_cidr_ip    = "0.0.0.0/0"
+    network_acl_entry_name = "allow_all_port"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow all port"
+  }
+
   dynamic "ingress_acl_entries" {
     for_each = var.additional_ingress_stateful_rules
     content {
@@ -249,6 +289,16 @@ resource "alicloud_network_acl" "compliance" {
   tags = {
     team        = var.label_team
     environment = var.label_environment
+  }
+
+  egress_acl_entries {
+    protocol               = "all"
+    port                   = "-1/-1"
+    destination_cidr_ip    = "0.0.0.0/0"
+    network_acl_entry_name = "allow_all_port"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow all port"
   }
 
   dynamic "ingress_acl_entries" {
