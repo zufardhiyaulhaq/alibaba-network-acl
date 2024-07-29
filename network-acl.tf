@@ -133,6 +133,12 @@ resource "alicloud_network_acl" "application" {
       description            = ingress_acl_entries.key
     }
   }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+    delete = "20m"
+  }
 }
 
 resource "alicloud_network_acl_attachment" "application" {
@@ -190,6 +196,12 @@ resource "alicloud_network_acl" "utility" {
       policy                 = ingress_acl_entries.value.policy
       description            = ingress_acl_entries.key
     }
+  }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+    delete = "20m"
   }
 }
 
@@ -275,6 +287,12 @@ resource "alicloud_network_acl" "public" {
       description            = ingress_acl_entries.key
     }
   }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+    delete = "20m"
+  }
 }
 
 resource "alicloud_network_acl_attachment" "public" {
@@ -359,6 +377,12 @@ resource "alicloud_network_acl" "stateful" {
       description            = ingress_acl_entries.key
     }
   }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+    delete = "20m"
+  }
 }
 
 resource "alicloud_network_acl_attachment" "stateful" {
@@ -442,6 +466,12 @@ resource "alicloud_network_acl" "compliance" {
       policy                 = ingress_acl_entries.value.policy
       description            = ingress_acl_entries.key
     }
+  }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+    delete = "20m"
   }
 }
 
