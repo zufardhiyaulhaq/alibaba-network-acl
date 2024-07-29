@@ -65,12 +65,12 @@ variable "compliance_subnets_id" {
 
 variable "additional_ingress_application_rules" {
   description = "List of additional ingress rules for application subnet ACL"
-  type = list(object({
+  type = map(object({
     policy         = number
     protocol       = string
     source_cidr_ip = string
     name           = string
     policy         = number
   }))
-  default = []
+  default = {}
 }
