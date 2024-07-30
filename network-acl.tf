@@ -78,7 +78,7 @@ resource "alicloud_network_acl" "application" {
       network_acl_entry_name = "allow_80_from_public_subnet"
       entry_type             = "custom"
       policy                 = "accept"
-      description            = "allow 6443 from public subnet"
+      description            = "allow 80 from public subnet"
     }
   }
 
@@ -192,7 +192,7 @@ resource "alicloud_network_acl" "utility" {
     network_acl_entry_name = "allow_80_from_internet"
     entry_type             = "custom"
     policy                 = "accept"
-    description            = "allow 6443 from internet"
+    description            = "allow 80 from internet"
   }
 
   ingress_acl_entries {
@@ -283,7 +283,7 @@ resource "alicloud_network_acl" "public" {
     network_acl_entry_name = "allow_80_from_internet"
     entry_type             = "custom"
     policy                 = "accept"
-    description            = "allow 6443 from internet"
+    description            = "allow 80 from internet"
   }
 
   ingress_acl_entries {
