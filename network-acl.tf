@@ -484,28 +484,28 @@ resource "alicloud_network_acl" "stateful" {
   dynamic "ingress_acl_entries" {
     for_each = toset(var.application_subnets_cidr)
     content {
-      protocol               = "tcp"
+      protocol               = "all"
       port                   = "-1/-1"
       source_cidr_ip         = ingress_acl_entries.value
-      network_acl_entry_name = "allow_all_tcp_from_application_subnet"
+      network_acl_entry_name = "allow_all_from_application_subnet"
       entry_type             = "custom"
       policy                 = "accept"
-      description            = "allow all tcp from application subnet"
+      description            = "allow all from application subnet"
     }
   }
 
-  # dynamic "ingress_acl_entries" {
-  #   for_each = toset(var.public_subnets_cidr)
-  #   content {
-  #     protocol               = "tcp"
-  #     port                   = "9099/9099"
-  #     source_cidr_ip         = ingress_acl_entries.value
-  #     network_acl_entry_name = "allow_9099_from_public_subnet"
-  #     entry_type             = "custom"
-  #     policy                 = "accept"
-  #     description            = "allow 9099 from public subnet"
-  #   }
-  # }
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.public_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "9099/9099"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_9099_from_public_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 9099 from public subnet"
+    }
+  }
 
   dynamic "ingress_acl_entries" {
     for_each = var.additional_ingress_stateful_rules
