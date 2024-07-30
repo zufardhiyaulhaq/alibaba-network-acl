@@ -443,32 +443,6 @@ resource "alicloud_network_acl" "stateful" {
   }
 
   dynamic "ingress_acl_entries" {
-    for_each = toset(var.application_subnets_cidr)
-    content {
-      protocol               = "tcp"
-      port                   = "-1/-1"
-      source_cidr_ip         = ingress_acl_entries.value
-      network_acl_entry_name = "allow_all_tcp_from_application_subnet"
-      entry_type             = "custom"
-      policy                 = "accept"
-      description            = "allow all tcp from application subnet"
-    }
-  }
-
-  dynamic "ingress_acl_entries" {
-    for_each = toset(var.public_subnets_cidr)
-    content {
-      protocol               = "tcp"
-      port                   = "9099/9099"
-      source_cidr_ip         = ingress_acl_entries.value
-      network_acl_entry_name = "allow_9099_from_public_subnet"
-      entry_type             = "custom"
-      policy                 = "accept"
-      description            = "allow 9099 from public subnet"
-    }
-  }
-
-  dynamic "ingress_acl_entries" {
     for_each = toset(var.utility_subnets_cidr)
     content {
       protocol               = "tcp"
@@ -493,6 +467,45 @@ resource "alicloud_network_acl" "stateful" {
       description            = "allow 3022 from utility subnet"
     }
   }
+
+  dynamic "ingress_acl_entries" {
+    for_each = var.additional_ingress_stateful_rules
+    content {
+      protocol               = ingress_acl_entries.value.protocol
+      port                   = ingress_acl_entries.value.port
+      source_cidr_ip         = ingress_acl_entries.value.source_cidr_ip
+      network_acl_entry_name = ingress_acl_entries.key
+      entry_type             = "custom"
+      policy                 = ingress_acl_entries.value.policy
+      description            = ingress_acl_entries.key
+    }
+  }
+
+  # dynamic "ingress_acl_entries" {
+  #   for_each = toset(var.application_subnets_cidr)
+  #   content {
+  #     protocol               = "tcp"
+  #     port                   = "-1/-1"
+  #     source_cidr_ip         = ingress_acl_entries.value
+  #     network_acl_entry_name = "allow_all_tcp_from_application_subnet"
+  #     entry_type             = "custom"
+  #     policy                 = "accept"
+  #     description            = "allow all tcp from application subnet"
+  #   }
+  # }
+
+  # dynamic "ingress_acl_entries" {
+  #   for_each = toset(var.public_subnets_cidr)
+  #   content {
+  #     protocol               = "tcp"
+  #     port                   = "9099/9099"
+  #     source_cidr_ip         = ingress_acl_entries.value
+  #     network_acl_entry_name = "allow_9099_from_public_subnet"
+  #     entry_type             = "custom"
+  #     policy                 = "accept"
+  #     description            = "allow 9099 from public subnet"
+  #   }
+  # }
 
   dynamic "ingress_acl_entries" {
     for_each = var.additional_ingress_stateful_rules
