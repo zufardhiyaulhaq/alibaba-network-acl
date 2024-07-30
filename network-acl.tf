@@ -185,6 +185,46 @@ resource "alicloud_network_acl" "utility" {
     }
   }
 
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "80/80"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_80_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 6443 from internet"
+  }
+
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "443/443"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_443_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 443 from internet"
+  }
+
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "15021/15021"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_15021_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 15021 from internet"
+  }
+
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "15443/15443"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_15443_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 15443 from internet"
+  }
+
   dynamic "ingress_acl_entries" {
     for_each = var.additional_ingress_utility_rules
     content {
@@ -236,6 +276,56 @@ resource "alicloud_network_acl" "public" {
     description            = "allow all port"
   }
 
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "80/80"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_80_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 6443 from internet"
+  }
+
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "443/443"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_443_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 443 from internet"
+  }
+
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "15021/15021"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_15021_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 15021 from internet"
+  }
+
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "15443/15443"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_15443_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 15443 from internet"
+  }
+
+  ingress_acl_entries {
+    protocol               = "tcp"
+    port                   = "9099/9099"
+    source_cidr_ip         = "0.0.0.0/0"
+    network_acl_entry_name = "allow_9099_from_internet"
+    entry_type             = "custom"
+    policy                 = "accept"
+    description            = "allow 9099 from internet"
+  }
+
   dynamic "ingress_acl_entries" {
     for_each = toset(var.public_subnets_cidr)
     content {
@@ -272,6 +362,19 @@ resource "alicloud_network_acl" "public" {
       entry_type             = "custom"
       policy                 = "accept"
       description            = "allow 3022 from utility subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.utility_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "6443/6443"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_6443_from_utility_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 6443 from utility subnet"
     }
   }
 
@@ -336,6 +439,32 @@ resource "alicloud_network_acl" "stateful" {
       entry_type             = "custom"
       policy                 = "accept"
       description            = "allow all port from stateful subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.application_subnets_cidr)
+    content {
+      protocol               = "tcp"
+      port                   = "-1/-1"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_all_tcp_from_application_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow all tcp from application subnet"
+    }
+  }
+
+  dynamic "ingress_acl_entries" {
+    for_each = toset(var.c)
+    content {
+      protocol               = "tcp"
+      port                   = "9099/9099"
+      source_cidr_ip         = ingress_acl_entries.value
+      network_acl_entry_name = "allow_9099_from_public_subnet"
+      entry_type             = "custom"
+      policy                 = "accept"
+      description            = "allow 9099 from public subnet"
     }
   }
 
