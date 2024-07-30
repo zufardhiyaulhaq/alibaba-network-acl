@@ -456,7 +456,7 @@ resource "alicloud_network_acl" "stateful" {
   }
 
   dynamic "ingress_acl_entries" {
-    for_each = toset(var.c)
+    for_each = toset(var.public_subnets_cidr)
     content {
       protocol               = "tcp"
       port                   = "9099/9099"
